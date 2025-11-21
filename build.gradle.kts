@@ -1,10 +1,10 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
-val ktor_version = "1.3.0"
+val ktor_version = "3.0.3"
+val kotlin_version = "2.1.10"
+val logback_version = "1.4.14"
 
 plugins {
     application
-    kotlin("jvm") version "1.3.61"
+    kotlin("jvm") version "2.1.10"
 }
 
 repositories {
@@ -12,18 +12,23 @@ repositories {
 }
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_1_8
+    sourceCompatibility = JavaVersion.VERSION_21
 }
 
-tasks.withType<KotlinCompile>().all {
-    kotlinOptions.jvmTarget = "1.8"
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
+    compilerOptions {
+        jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_21)
+    }
 }
 
 application {
-    mainClassName = "AppKt"
+    mainClass.set("AppKt")
 }
 
 dependencies {
-    implementation(kotlin("stdlib"))
-    implementation("io.ktor:ktor-server-netty:${ktor_version}")
+    implementation("io.ktor:ktor-server-core-jvm:$ktor_version")
+    implementation("io.ktor:ktor-server-netty-jvm:$ktor_version")
+    implementation("ch.qos.logback:logback-classic:$logback_version")
+    testImplementation("io.ktor:ktor-server-tests-jvm:$ktor_version")
+    testImplementation(kotlin("test"))
 }
