@@ -6,7 +6,7 @@ Clone this repository to have Kotlin + Ktor + Gradle up and running in no time!
 
 | Tool   | Version | Notes                                                                                          |
 | ------ | ------- | ---------------------------------------------------------------------------------------------- |
-| Kotlin | 2.1.10  |                                                                                                |
+| Kotlin | 2.2.21  |                                                                                                |
 | Gradle | 8.5     | Use the wrapper -- no need to install locally                                                  |
 | Ktor   | 3.0.3   |                                                                                                |
 
